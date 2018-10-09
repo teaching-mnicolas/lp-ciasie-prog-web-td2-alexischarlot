@@ -6,7 +6,7 @@ describe ("Function", function() {
     };
 
     f.prop = 2;             // set a new property prop on f, with value 2
-t(f()).toEqual(1);
+    expect(f()).toEqual(1);
     expect(f.prop).toEqual(2);
   });
 

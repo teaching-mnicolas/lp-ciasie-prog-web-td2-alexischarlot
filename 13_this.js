@@ -4,7 +4,7 @@ describe ("This", function() {
     let f = function() {
       return this;
     }
-    expect(__).toEqual(window);           // call f as a function
+    expect(f()).toEqual(window);           // call f as a function
   });
 
   it ("is the object if called like a method", function() {
@@ -12,17 +12,17 @@ describe ("This", function() {
       return this;
     }
     let o = {}
-    o.m = __;                             // define f to be method m on o
-    expect(o.m()).toEqual(__);            // check that we get the o object here
+    o.m = f;                             // define f to be method m on o
+    expect(o.m()).toEqual(o);            // check that we get the o object here
   });
 
   it ("is a new object if called like a constructor", function() {
     let f = function() {
       return this;
     }
-    let o = __ __();                       // call f as constructor, with the new operator
+    let o = new f();                       // call f as constructor, with the new operator
     expect(o.toString()).not.toEqual("[object Window]");
-    expect(typeof(o)).toEqual(__);        // check that we get an object here
+    expect(typeof(o)).toEqual("object");        // check that we get an object here
   });
 
 });

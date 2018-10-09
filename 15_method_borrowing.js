@@ -2,7 +2,7 @@ describe ("Method borrowing", function() {
 
   it ("borrow one method for arguments", function() {
     let f = function() {
-      arguments.__ = [].__;     // define a pop property on arguments equal to the pop method of the array
+      arguments.pop = [].pop;     // define a pop property on arguments equal to the pop method of the array
       let a = arguments.pop();
       expect(a).toEqual(2);
     };
@@ -11,7 +11,7 @@ describe ("Method borrowing", function() {
 
   it ("create an array from arguments", function() {
     let f = function() {
-      let ar = Array.prototype.slice.__(__);    // apply the slice method on arguments, with the 'call' method
+      let ar = Array.prototype.slice.call(arguments);    // apply the slice method on arguments, with the 'call' method
       let a = ar.pop();
       expect(a).toEqual(2);
     };
