@@ -4,11 +4,11 @@ describe ("Closure", function() {
     let f = function() {
       return b;
     };
-    expect(b).toBe__();
-    expect(f()).toBe__();
+    expect(b).toBeUndefined();
+    expect(f()).toBeUndefined();
     var b = 1;
-    expect(f()).toBe__();
-    expect(f()).toEqual(__);
+    expect(f()).toBeDefined();
+    expect(f()).toEqual(1);
   });
 
   it ("save definition context", function() {
@@ -22,7 +22,7 @@ describe ("Closure", function() {
     };
 
     let d = c();
-    expect(d()).toEqual(__);
+    expect(d()).toEqual(3);
   });
 
   it ("save reference to context", function() {
@@ -34,9 +34,9 @@ describe ("Closure", function() {
       };
       a[i] = f;
     };
-    expect(a[0]()).toEqual(__);
-    expect(a[1]()).toEqual(__);
-    expect(a[2]()).toEqual(__);
+    expect(a[0]()).toEqual(3);
+    expect(a[1]()).toEqual(3);
+    expect(a[2]()).toEqual(3);
   });
 
   it ("needs a wrapper in loop", function() {
@@ -49,9 +49,9 @@ describe ("Closure", function() {
         a[e] = f;
       })(i);
     };
-    expect(a[0]()).toEqual(__);
-    expect(a[1]()).toEqual(__);
-    expect(a[2]()).toEqual(__);
+    expect(a[0]()).toEqual(0);
+    expect(a[1]()).toEqual(1);
+    expect(a[2]()).toEqual(2);
   });
 
 });
