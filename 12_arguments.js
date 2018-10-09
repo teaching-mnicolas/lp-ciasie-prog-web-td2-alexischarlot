@@ -5,7 +5,9 @@ describe ("Arguments", function() {
       expect(arguments.length).not.toBeLessThan(2);
       return arg1 + 1;
     };
+
     expect(f(1,2,3,4,5)).toEqual(2);   // call f with 5 arguments, first being value 1
+
   });
 
   it ("can take less arguments than declared", function() {
@@ -14,12 +16,16 @@ describe ("Arguments", function() {
       expect(arg2).toBeUndefined();
       return arg1 + 1;
     };
+
     expect(f(1)).toEqual(2);   // call f with only one argument, value 1
+
   });
 
   it ("has the number of parameters declared in property 'length'", function() {
     let f = function(arg1, arg2) {};
+
     expect(f.length).toEqual(2);      // check the property length of f
+
   });
 
   it ("has all args in 'arguments'", function() {
