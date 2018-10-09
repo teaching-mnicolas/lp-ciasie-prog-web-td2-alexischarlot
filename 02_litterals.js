@@ -2,14 +2,14 @@ describe ("Object Litteral", function() {
 
   it ("define property without quotes", function() {
     let o = {
-      __: 1           // define a property prop equal to 1
+      prop: 1           // define a property prop equal to 1
     };
     expect(o.prop).toEqual(1);
   });
 
   it ("define property with quotes", function() {
     let o = {
-      __: 1           // define a property "prop" equal to 1
+      'prop': 1           // define a property "prop" equal to 1
     };
     expect(o.prop).toEqual(1);
   });
@@ -19,20 +19,20 @@ describe ("Object Litteral", function() {
       "prop": 1,
       prop: 2
     };
-    expect(o.prop).toEqual(__);
+    expect(o.prop).toEqual(2);
   });
 
   it ("access property with dot or []", function() {
     let o = {
       prop: 1
     };
-    expect(__).toEqual(1);       // access prop through o.
-    expect(__).toEqual(1);       // access prop through o[]
+    expect(o.prop).toEqual(1);       // access prop through o.
+    expect(o["prop"]).toEqual(1);       // access prop through o[]
   });
 
   it ("can use number to define property", function() {
     let o = {
-      __: 42       // define a property named 1 (without "")
+      1: 42       // define a property named 1 (without "")
     };
     expect(o["1"]).toEqual(42);
     expect(o[1]).toEqual(42);
@@ -40,7 +40,7 @@ describe ("Object Litteral", function() {
 
   it ("can use number in quote to define property", function() {
     let o = {
-      __: 42      // define a property named "1" (with "")
+      "1": 42      // define a property named "1" (with "")
     };
     expect(o["1"]).toEqual(42);
     expect(o[1]).toEqual(42);
@@ -48,17 +48,17 @@ describe ("Object Litteral", function() {
 
   it ("an array is really an object", function() {
     let a = [1, 2, 3];
-    expect(a[__]).toEqual(2);      // access case with indice 1 (without "")
-    expect(a[__]).toEqual(2);      // access case with indice "1" (with "")
+    expect(a[1]).toEqual(2);      // access case with indice 1 (without "")
+    expect(a["1"]).toEqual(2);      // access case with indice "1" (with "")
   });
 
   it ("can modify property", function() {
     let o = {
       prop: 1
     };
-    __ = 2;                    // set o.prop to 2
+    o.prop = 2;                    // set o.prop to 2
     expect(o.prop).toEqual(2);
-    __ = 3;                    // set o["prop"] to 3
+    o["prop"] = 3;                    // set o["prop"] to 3
     expect(o.prop).toEqual(3);
   });
 
@@ -66,7 +66,7 @@ describe ("Object Litteral", function() {
     let o = {
       prop: 1
     };
-    expect(o.prop_2).toBe__();
+    expect(o.prop_2).toBeUndefined();
   });
 
   it ("can add propery on the fly", function() {
@@ -74,7 +74,7 @@ describe ("Object Litteral", function() {
       prop: 1
     };
     expect(o.prop_2).toBeUndefined();
-    __ = 2;                     // define a new property, prop_2, equal to 2, on o
+    o.prop_2 = 2;                     // define a new property, prop_2, equal to 2, on o
     expect(o.prop_2).not.toBeUndefined();
     expect(o.prop_2).toEqual(2);
   });

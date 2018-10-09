@@ -7,7 +7,7 @@ describe ("For in", function() {
     };
 
     let a = "";
-    __ {                // set a for in loop, enumerating all property of obj in let p
+    for (let p in obj) {                // set a for in loop, enumerating all property of obj in let p
       a += p;
     };
 
@@ -22,7 +22,7 @@ describe ("For in", function() {
     };
 
     let a = "";
-    __ {                // set a for in loop, enumerating all property of obj in let p
+    for(let p in obj) {                // set a for in loop, enumerating all property of obj in let p
       a += p;
     };
 
@@ -35,8 +35,8 @@ describe ("For in", function() {
     let ar = [1, 2];
 
     let a = "";
-    __ {                // set a for in loop, enumerating all property of ar in let p
-      __;               // add the CONTENT of ar[p] to a
+    for(let p in ar) {                // set a for in loop, enumerating all property of ar in let p
+      a+=ar[p];               // add the CONTENT of ar[p] to a
     };
 
     expect(a).toContain("1");
@@ -48,13 +48,13 @@ describe ("For in", function() {
     ar.prop = 3;
 
     let a = "";
-    __ {                // set a for in loop, enumerating all property of ar in let p
-      __;               // add the CONTENT of ar[p] to a
+    for(let p in ar) {                // set a for in loop, enumerating all property of ar in let p
+      a+=ar[p];               // add the CONTENT of ar[p] to a
     };
 
     expect(a).toContain("1");
     expect(a).toContain("2");
-    expect(a).__;       // check that a contains also 3
+    expect(a).toContain("3");       // check that a contains also 3
   });
 
   it ("is better to use forEach for arrays", function() {
@@ -62,13 +62,13 @@ describe ("For in", function() {
     ar.prop = 3;
 
     let a = "";
-    ar.__(function(val) {    // call the forEach method on ar
+    ar.forEach(function(val) {    // call the forEach method on ar
       a += val;
     });
 
     expect(a).toContain("1");
     expect(a).toContain("2");
-    expect(a).__;       // check that a DOES NOT contains also 3
+    expect(a).not.toContain("3");       // check that a DOES NOT contains also 3
   });
 
 
